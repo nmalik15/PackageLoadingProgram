@@ -1,3 +1,5 @@
+import sys
+
 # Setting global variables
 package_weight = 0
 total_weight_sent = 0
@@ -12,7 +14,9 @@ print("\n *** PACKAGE LOADING PROGRAM *** \n")
 
 while True:
     num_items = input("\nHow many items to pack?: ")
-    if num_items.isdigit(): # checking if user entered number
+    if num_items == "0":
+        sys.exit("No packages or items sent. Stopping.")
+    elif num_items.isdigit(): # checking if user entered number
         num_items = int(num_items)
         break
     else:
@@ -42,7 +46,7 @@ for i in range(num_items): # iterating through number of items
         if 20 - package_weight > max_unused_capacity:
             max_unused_capacity = 20 - package_weight
             max_unused_capacity_package = packages_sent + 1
-        print("Package limit reached! Current package sent. New package started.")
+        print(f"Package limit reached! Current package sent. New package started with item no. {i+1}.")
         package_weight = weight
         packages_sent += 1
     else:
