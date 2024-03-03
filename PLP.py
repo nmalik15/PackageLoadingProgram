@@ -51,3 +51,24 @@ for i in range(num_items): # iterating through number of items
     if weight == 0:
         break
 
+# checking for total weight and unused capacity
+
+total_weight_sent += package_weight
+if 20 - package_weight > max_unused_capacity:
+    max_unused_capacity = 20 - package_weight
+    max_unused_capacity_package = packages_sent + 1
+packages_sent += 1
+
+unused_capacity = packages_sent * 20 - total_weight_sent
+
+# Summary
+
+print("\nSummary:")
+print(f"Number of packages sent: {packages_sent}")
+print(f"Total weight of packages sent: {total_weight_sent} kg")
+print(f"Total 'unused' capacity: {unused_capacity} kg")
+
+# used only if we have "unused" capacity, in case all packages are 20 then it will be skipped
+if max_unused_capacity_package != -1:
+    print(f"Package number with the most 'unused' capacity: {max_unused_capacity_package}")
+    print(f"Amount of 'unused' capacity in that package: {max_unused_capacity} kg")
